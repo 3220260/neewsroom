@@ -12,7 +12,7 @@ SITE = ROOT / "site"
 CFG = json.loads((ROOT / "scripts" / "feeds.json").read_text(encoding="utf-8"))
 
 SITE_NAME = "Ροή"
-SITE_TAGLINE = "Διεθνείς ειδήσεις τεχνολογίας και οικονομίας, στα ελληνικά."
+SITE_TAGLINE = "Τεχνολογία, οικονομία και πανεπιστημιακή έρευνα από διεθνείς πηγές, στα ελληνικά."
 BASE_URL = ""  # π.χ. "https://example.com" για απόλυτα links στο RSS
 
 GR_MONTHS = ["Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",

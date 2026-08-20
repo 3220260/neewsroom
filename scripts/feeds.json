@@ -2,22 +2,64 @@
   "tech": {
     "label": "Τεχνολογία & AI",
     "slug": "texnologia",
+    "per_day": "2-3",
     "feeds": [
-      "https://techcrunch.com/feed/",
-      "https://feeds.arstechnica.com/arstechnica/technology-lab",
-      "https://www.theverge.com/rss/index.xml",
-      "https://www.wired.com/feed/tag/ai/latest/rss",
-      "https://hnrss.org/frontpage?points=250"
+      "https://techcrunch.com/",
+      "https://arstechnica.com/",
+      "https://www.theverge.com/",
+      "https://www.wired.com/tag/artificial-intelligence/",
+      "https://news.ycombinator.com/"
     ]
   },
   "finance": {
     "label": "Οικονομία & Αγορές",
     "slug": "oikonomia",
+    "per_day": "2-3",
     "feeds": [
-      "https://feeds.content.dowjones.io/public/rss/mw_topstories",
-      "https://www.cnbc.com/id/100003114/device/rss/rss.html",
-      "https://www.investing.com/rss/news_25.rss",
-      "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
+      "https://www.cnbc.com/markets/",
+      "https://www.marketwatch.com/",
+      "https://www.reuters.com/markets/",
+      "https://www.investing.com/news/"
+    ]
+  },
+  "research_cn": {
+    "label": "Έρευνα — Κίνα",
+    "slug": "erevna-kina",
+    "per_day": "1",
+    "note": "Τα κινεζικά πανεπιστήμια δεν έχουν σταθερά RSS. Ξεκίνα από τις σελίδες· αν κάποια δεν φορτώνει, βρες την είδηση με WebSearch (π.χ. «Tsinghua University study published Nature»).",
+    "universities": [
+      {"name": "Tsinghua University", "el": "Πανεπιστήμιο Τσινγκχούα", "news": "https://www.tsinghua.edu.cn/en/News.htm", "research": "https://www.tsinghua.edu.cn/en/Research/Research_Feature.htm"},
+      {"name": "Peking University", "el": "Πανεπιστήμιο του Πεκίνου", "news": "https://newsen.pku.edu.cn/news/latest.html", "research": "https://english.pku.edu.cn/research.html"},
+      {"name": "Fudan University", "el": "Πανεπιστήμιο Φουντάν", "news": "https://www.fudan.edu.cn/en/Events/list.htm", "research": "https://www.fudan.edu.cn/en/FacultywResearch_367/list.htm"},
+      {"name": "Shanghai Jiao Tong University", "el": "Πανεπιστήμιο Σαγκάης Τζιάο Τονγκ", "news": "https://en.sjtu.edu.cn/news-events/news", "research": "https://en.sjtu.edu.cn/news-events/meet-sjtu/research"},
+      {"name": "Zhejiang University", "el": "Πανεπιστήμιο Τζετζιάνγκ", "news": "https://www.zju.edu.cn/english/", "research": "https://www.zju.edu.cn/english/"}
+    ],
+    "backup": [
+      {"name": "University of Science and Technology of China", "el": "Πανεπιστήμιο Επιστήμης και Τεχνολογίας της Κίνας", "news": "https://en.ustc.edu.cn/News___Events.htm", "research": "https://en.ustc.edu.cn/Research.htm"}
+    ]
+  },
+  "research_uk": {
+    "label": "Έρευνα — Βρετανία",
+    "slug": "erevna-vretania",
+    "per_day": "1",
+    "universities": [
+      {"name": "University of Oxford", "el": "Πανεπιστήμιο της Οξφόρδης", "news": "https://www.ox.ac.uk/news", "research": "https://www.ox.ac.uk/news/science-blog"},
+      {"name": "University of Cambridge", "el": "Πανεπιστήμιο του Κέμπριτζ", "news": "https://www.cam.ac.uk/news", "research": "https://www.cam.ac.uk/research/news"},
+      {"name": "Imperial College London", "el": "Imperial College του Λονδίνου", "news": "https://www.imperial.ac.uk/news/", "research": "https://www.imperial.ac.uk/news/"},
+      {"name": "University College London", "el": "University College του Λονδίνου", "news": "https://www.ucl.ac.uk/news/", "research": "https://www.ucl.ac.uk/news/research"},
+      {"name": "University of Edinburgh", "el": "Πανεπιστήμιο του Εδιμβούργου", "news": "https://www.ed.ac.uk/news", "research": "https://www.ed.ac.uk/news/research"}
+    ]
+  },
+  "research_us": {
+    "label": "Έρευνα — ΗΠΑ",
+    "slug": "erevna-ipa",
+    "per_day": "1-2",
+    "universities": [
+      {"name": "MIT", "el": "MIT", "news": "https://news.mit.edu/", "research": "https://news.mit.edu/topic/research"},
+      {"name": "Stanford University", "el": "Πανεπιστήμιο Στάνφορντ", "news": "https://news.stanford.edu/", "research": "https://news.stanford.edu/research-and-scholarship"},
+      {"name": "Harvard University", "el": "Πανεπιστήμιο Χάρβαρντ", "news": "https://news.harvard.edu/gazette/", "research": "https://news.harvard.edu/gazette/section/science-technology/"},
+      {"name": "California Institute of Technology", "el": "Caltech", "news": "https://www.caltech.edu/about/news", "research": "https://www.caltech.edu/about/news"},
+      {"name": "University of California, Berkeley", "el": "Πανεπιστήμιο Μπέρκλεϊ", "news": "https://news.berkeley.edu/", "research": "https://news.berkeley.edu/category/research/"}
     ]
   }
 }
