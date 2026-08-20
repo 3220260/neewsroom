@@ -1,0 +1,23 @@
+{
+  "tech": {
+    "label": "Τεχνολογία & AI",
+    "slug": "texnologia",
+    "feeds": [
+      "https://techcrunch.com/feed/",
+      "https://feeds.arstechnica.com/arstechnica/technology-lab",
+      "https://www.theverge.com/rss/index.xml",
+      "https://www.wired.com/feed/tag/ai/latest/rss",
+      "https://hnrss.org/frontpage?points=250"
+    ]
+  },
+  "finance": {
+    "label": "Οικονομία & Αγορές",
+    "slug": "oikonomia",
+    "feeds": [
+      "https://feeds.content.dowjones.io/public/rss/mw_topstories",
+      "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+      "https://www.investing.com/rss/news_25.rss",
+      "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
+    ]
+  }
+}
