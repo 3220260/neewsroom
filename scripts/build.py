@@ -139,8 +139,9 @@ def build():
     (SITE / "style.css").write_text(CSS, encoding="utf-8")
 
     # --- home ---
+    HOME_MAX = 25  # πόσα άρθρα δείχνει η αρχική· οι κατηγορίες τα δείχνουν όλα
     lead = arts[0] if arts else None
-    rest = arts[1:]
+    rest = arts[1:HOME_MAX]
     body = f"""<section class="hero">
   <p class="kicker">Ενημέρωση από διεθνείς πηγές</p>
   <h1>{SITE_NAME}</h1>
