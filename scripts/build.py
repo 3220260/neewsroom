@@ -12,7 +12,9 @@ SITE = ROOT / "site"
 CFG = json.loads((ROOT / "scripts" / "feeds.json").read_text(encoding="utf-8"))
 
 SITE_NAME = "Ροή"
-SITE_TAGLINE = "Τεχνολογία, οικονομία και πανεπιστημιακή έρευνα από διεθνείς πηγές, στα ελληνικά."
+SITE_TAGLINE = "Ειδήσεις από την Αμπούτζα και τη Νιγηρία, στα ελληνικά."
+HOME_CAT = "nigeria"   # ποια κατηγορία γεμίζει την αρχική σελίδα
+HOME_MAX = 15          # πόσα άρθρα δείχνει η αρχική
 BASE_URL = ""  # π.χ. "https://example.com" για απόλυτα links στο RSS
 
 GR_MONTHS = ["Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
@@ -76,8 +78,10 @@ def inline(s):
 
 def shell(title, desc, body, depth=0, active=None):
     up = "../" * depth
+    # Η Νιγηρία είναι η αρχική σελίδα, οπότε το μενού της δείχνει στο index.
     nav = "".join(
-        f'<a href="{up}{CAT_SLUG[k]}/" class="{"on" if active == k else ""}">{e(v)}</a>'
+        f'<a href="{up}{"index.html" if k == HOME_CAT else CAT_SLUG[k] + "/"}" '
+        f'class="{"on" if active == k else ""}">{e(v)}</a>'
         for k, v in CAT_LABEL.items())
     year = datetime.date.today().year
     return f"""<!DOCTYPE html>
@@ -94,7 +98,7 @@ def shell(title, desc, body, depth=0, active=None):
 <header class="site">
   <div class="wrap">
     <a class="brand" href="{up}index.html"><span class="mark"></span>{SITE_NAME}</a>
-    <nav>{nav}<a href="{up}feed.xml" class="rss">RSS</a></nav>
+    <nav>{nav}</nav>
   </div>
 </header>
 <main class="wrap">
@@ -110,11 +114,16 @@ def shell(title, desc, body, depth=0, active=None):
 </html>"""
 
 
+def cat_href(cat):
+    """Πού δείχνει ο σύνδεσμος μιας κατηγορίας (η HOME_CAT ζει στην αρχική)."""
+    return "index.html" if cat == HOME_CAT else CAT_SLUG[cat] + "/"
+
+
 def card(a, depth=0):
     up = "../" * depth
     cat = a["category"]
     return f"""<article class="card">
-  <a class="cat" href="{up}{CAT_SLUG[cat]}/">{e(CAT_LABEL[cat])}</a>
+  <a class="cat" href="{up}{cat_href(cat)}">{e(CAT_LABEL[cat])}</a>
   <h2><a href="{up}arthro/{e(a['slug'])}.html">{e(a['title'])}</a></h2>
   <p class="dek">{e(a.get('dek',''))}</p>
   <p class="meta"><time datetime="{e(a.get('published',''))}">{gr_date(a.get('published',''))}</time> · {e(a.get('reading','3 λεπτά ανάγνωση'))}</p>
@@ -139,11 +148,11 @@ def build():
     (SITE / "style.css").write_text(CSS, encoding="utf-8")
 
     # --- home ---
-    HOME_MAX = 25  # πόσα άρθρα δείχνει η αρχική· οι κατηγορίες τα δείχνουν όλα
-    lead = arts[0] if arts else None
-    rest = arts[1:HOME_MAX]
+    home_arts = [a for a in arts if a["category"] == HOME_CAT][:HOME_MAX]
+    lead = home_arts[0] if home_arts else None
+    rest = home_arts[1:]
     body = f"""<section class="hero">
-  <p class="kicker">Ενημέρωση από διεθνείς πηγές</p>
+  <p class="kicker">Αμπούτζα · Ομοσπονδιακή Πρωτεύουσα</p>
   <h1>{SITE_NAME}</h1>
   <p class="tagline">{SITE_TAGLINE}</p>
 </section>"""
@@ -156,10 +165,13 @@ def build():
 </a>"""
     body += '<div class="grid">' + "".join(card(a) for a in rest) + "</div>"
     (SITE / "index.html").write_text(
-        shell(f"{SITE_NAME} — {SITE_TAGLINE}", SITE_TAGLINE, body), encoding="utf-8")
+        shell(f"{SITE_NAME} — {SITE_TAGLINE}", SITE_TAGLINE, body,
+              active=HOME_CAT), encoding="utf-8")
 
-    # --- categories ---
+    # --- categories (η αρχική καλύπτει την HOME_CAT) ---
     for k, label in CAT_LABEL.items():
+        if k == HOME_CAT:
+            continue
         sub = [a for a in arts if a["category"] == k]
         d = SITE / CAT_SLUG[k]
         d.mkdir(exist_ok=True)
@@ -176,7 +188,7 @@ def build():
         related = [x for x in arts if x["slug"] != a["slug"] and x["category"] == a["category"]][:3]
         rel = "".join(f'<li><a href="{e(x["slug"])}.html">{e(x["title"])}</a></li>' for x in related)
         b = f"""<article class="post">
-  <p class="crumbs"><a href="../{CAT_SLUG[a['category']]}/">{e(CAT_LABEL[a['category']])}</a></p>
+  <p class="crumbs"><a href="../{cat_href(a['category'])}">{e(CAT_LABEL[a['category']])}</a></p>
   <h1>{e(a['title'])}</h1>
   <p class="dek">{e(a.get('dek',''))}</p>
   <p class="meta"><time datetime="{e(a.get('published',''))}">{gr_date(a.get('published',''))}</time>
